@@ -1,0 +1,68 @@
+%init stuff
+N = 10;
+h = 1/(N-1);
+a = 1/N^2;
+k = N;
+e=h^2/(2*k);
+z = zeros(1,(N));
+z1 = zeros(1,(N-1))+1;
+z2 = zeros(1,(N))+2;
+A =  (diag(z) + diag(z1,1) - diag(z1,-1))
+A(1,N) = -1;
+A(N,1) = 1;
+display(A);
+B =  (-diag(z2) + diag(z1,1) + diag(z1,-1)) % -diag(z2) for somereson???
+B(1,N) = 1;
+B(N,1) = 1;
+display(B);
+C = (-a/(2*h))*A + (e/(h^2))*B;
+display(C);
+
+x_scale = 0:h:1;
+u_init = zeros(N,1);
+
+for i=1:N
+    u_init(i)=u_f(x_scale(i));
+end
+
+b=zeros(N);
+b(1,:) = u_init;
+
+for i=1:N-1
+   rk = rk_f(h, C, b(i,:)');
+   b(i+1,:) = rk(:,1)';
+end
+
+    
+    
+
+% u(:)=C*u_init(:);
+
+% %initial condition
+% u = ones(N,1);
+% counter=0;
+% 
+% for i=0:dx:1
+%     counter=counter+1;
+%     tmp = i;
+%     u(counter,1)=u_f(tmp);
+% end 
+% p=ones(N);
+% p(1,:) = u;
+% u(:)=C*u(:); %right hand side
+% 
+% 
+% 
+% for i=1:N
+%     for j=1:N-1
+%         tmp = rk_f(h,C,p(i,j));
+%         p(i,j+1)=tmp;
+%     end
+% end
+%  x = p(:,:,1);
+%  y = p(:,:,2);
+%  z = p(:,:,3);
+%  figure; plot3(x,y,z);
+
+
+ 
