@@ -1,13 +1,13 @@
 function [x,n] = cg(A,b,tol)
-r = b;
-rho = norm(r)^2;
-p = r;
-
-n=0;
-
-s = size(b,1);
-x = zeros(s,1);
-
+    r = p;
+    rho = norm(r)^2;
+    p = r;
+    
+    n=0;
+    
+    s = size(b,1);
+    x = zeros(s,1);
+    
     while (norm(A*x - b) >= tol)
         w = A*p;
         alpha = rho/(p'*w);
