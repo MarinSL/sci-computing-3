@@ -1,20 +1,19 @@
 function [b,err]= try1(N,h)
     h = 1/(N-1);
-    a = 1/N^2;
-    k = N;
+    epsilon = eps;
     %init matrix
     z = zeros(1,(N));
     z1 = zeros(1,(N-1))+1;
     z2 = zeros(1,(N))+2;
-    A =  (diag(z) + diag(z1,1) - diag(z1,-1))
+    A =  (diag(z) + diag(z1,1) - diag(z1,-1));
     A(1,N) = -1;
     A(N,1) = 1;
     display(A);
-    B =  (-diag(z2) + diag(z1,1) + diag(z1,-1)) 
+    B =  (-diag(z2) + diag(z1,1) + diag(z1,-1));
     B(1,N) = 1;
     B(N,1) = 1;
     display(B);
-    C = (-1/(2*h))*A + (eps/(h^2))*B;
+    C = (-1/(2*h))*A + (epsilon/(h^2))*B;
     display(C);
 
     x_scale = 0:h:1;

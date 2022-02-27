@@ -1,6 +1,5 @@
 function [x,n] = jacobi(A, b, TOL)
     x = [];
-    A = sparse(A);
     s = size(b,1);
     n = 0;
     

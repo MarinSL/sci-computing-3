@@ -1,5 +1,4 @@
 function [x,n] = cg_upd(A,b,tol)
-    A = sparse(A);
     r = b;
     p = b;  
     n = 0;
