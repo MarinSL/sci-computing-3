@@ -14,4 +14,4 @@ for i=1:length(ns)
     title(['N=', num2str(N)])
 end
 subplot(2,3,6);
-loglog(0:0.25:1,errors(:));
+loglog(1./(ns-1),errors(:));
